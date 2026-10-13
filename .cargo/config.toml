@@ -1,0 +1,9 @@
+# Requires a Cargo nightly with -Zmin-publish-age (CI pins one below).
+[unstable]
+min-publish-age = true
+
+[registry]
+global-min-publish-age = "14 days"
+
+[resolver]
+incompatible-publish-age = "deny"

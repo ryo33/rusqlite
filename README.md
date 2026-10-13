@@ -1,5 +1,7 @@
 # Rusqlite
 
+Fork-specific session APIs, supported builds, and dependency policy: [FORK.md](FORK.md).
+
 [![Latest Version](https://img.shields.io/crates/v/rusqlite.svg)](https://crates.io/crates/rusqlite)
 [![Documentation](https://docs.rs/rusqlite/badge.svg)](https://docs.rs/rusqlite)
 [![Build Status (GitHub)](https://github.com/rusqlite/rusqlite/workflows/CI/badge.svg)](https://github.com/rusqlite/rusqlite/actions)
