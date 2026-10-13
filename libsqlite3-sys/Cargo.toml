@@ -38,9 +38,9 @@ unlock_notify = []
 # SQLITE_ENABLE_COLUMN_METADATA
 column_metadata = []
 # SQLITE_ENABLE_PREUPDATE_HOOK
-preupdate_hook = ["buildtime_bindgen"]
+preupdate_hook = []
 # SQLITE_ENABLE_SESSION
-session = ["preupdate_hook", "buildtime_bindgen"]
+session = ["preupdate_hook"]
 in_gecko = []
 with-asan = []
 wasm32-wasi-vfs = []

@@ -418,6 +418,10 @@ mod build_linked {
     use std::path::Path;
 
     pub fn main(_out_dir: &str, out_path: &Path) {
+        assert!(
+            !cfg!(feature = "preupdate_hook") || cfg!(feature = "buildtime_bindgen"),
+            "system SQLite with session/preupdate_hook requires buildtime_bindgen and a library built with the corresponding SQLite extensions; use bundled for pregenerated bindings"
+        );
         let header = find_sqlite();
         if (cfg!(any(
             feature = "bundled_bindings",

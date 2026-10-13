@@ -672,6 +672,11 @@ impl Statement<'_> {
     #[inline]
     fn execute_with_bound_parameters(&mut self) -> Result<usize> {
         self.check_update()?;
+        // Pre-prepared statements must not bypass the borrow held by session
+        // operations. Release this check before stepping to preserve ordinary
+        // SQLite callback behavior outside session operations.
+        #[cfg(feature = "session")]
+        drop(self.conn.db.borrow_mut());
         let r = self.stmt.step();
         let rr = self.stmt.reset();
         match r {
@@ -848,6 +853,8 @@ impl Statement<'_> {
 
     #[inline]
     pub(super) fn step(&self) -> Result<bool> {
+        #[cfg(feature = "session")]
+        drop(self.conn.db.borrow_mut());
         match self.stmt.step() {
             ffi::SQLITE_ROW => Ok(true),
             ffi::SQLITE_DONE => Ok(false),
